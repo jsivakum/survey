@@ -1,7 +1,11 @@
 <% if @surveys.any? %>
-  <h1>Existing Surveys</h1>
+  <h1>Edit Existing Surveys</h1>
   <% @surveys.each do |s| %>
-    <a href = "/survey/<%= s.id %>"><%= s.name %> </a>
+  <form action="/delete_survey/<%= s.id %>" method="post">
+    <input type="hidden" name="_method" value="delete"> <button type="submit" class="btn btn-xs btn-danger">X</button>
+    <a href = "/survey/edit/<%= s.id %>"><%= s.name %>: </a> <%= s.description %> <br>
+  </form>
+  
   <% end %>
 <% else %>
   <p>
@@ -10,3 +14,8 @@
 <% end %>
 
 <h1>Add a Survey</h1>
+<form  action="/add_survey" method="post">
+  <input type="text" name="name" placeholder="Survey Name">
+  <input type="text" name="description" placeholder="Survey Description">
+  <button type="submit" class = 'btn btn-large btn-danger'>Submit</button>
+</form>

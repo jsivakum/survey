@@ -1,0 +1,41 @@
+<h1><%= @survey.name %>: <%= @survey.description %> </h1>
+
+<% if @survey.questions().any?() %>
+
+  <ol>
+  <% @survey.questions().each() do |q| %>
+
+  <li>
+
+    <form action="/update_question/<%= q.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <input type="text" name="query"  value= "<%= q.query() %>">
+      <button type="submit" class="btn btn-success btn-xs">Edit</button>
+    </form>
+   <form action="/delete_question/<%= q.id %>" method="post">
+      <input type="hidden" name="_method" value="delete"> <button type="submit" class="btn btn-xs btn-danger">X</button>
+    </form>
+  </li>
+
+  <% end %>
+  </ol>
+<% end %>
+
+
+<h2> Add Questions </h2>
+<form  action="/add_question" method="post">
+  <input type="hidden" name="survey_id" value="<%= @survey.id %>">
+  <input type="text" class="form-control" name="question[]" placeholder="Add a Question">
+  <input type="text" class="form-control" name="question[]" placeholder="Add a Question">
+  <input type="text" class="form-control" name="question[]" placeholder="Add a Question">
+  <button class="btn btn-success" type="submit">Submit</button>
+</form>
+
+<h2>Edit Survey Name or Description</h2>
+<form action="/update_survey/<%= @survey.id %>" method="post">
+  <input type="hidden" class="form-control" name="_method" value="patch">
+  <input type="text" class="form-control" name="name" value="<%= @survey.name %>">
+  <input type="text" class="form-control" name="description" value="<%= @survey.description %>">
+  <button type="submit" class="btn btn-info">Update</button>
+
+</form>

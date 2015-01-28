@@ -1,5 +1,5 @@
 class AddDescriptionToSurvey < ActiveRecord::Migration
   def change
-    add_column(:survey, :description, :string)
+    add_column(:surveys, :description, :string)
   end
 end

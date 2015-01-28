@@ -1,7 +1,7 @@
 <% if @surveys.any?() %>
   <ul>
     <% @surveys.each() do |survey| %>
-      <li><a href="/survey/<%= survey.id() %>"> <%= survey.name() %> </a></li>
+      <li><a href="/survey/<%= survey.id() %>"> <%= survey.name() %>: </a><%= survey.description %></li>
     <%  end %>
   </ul>
 <% else %>
