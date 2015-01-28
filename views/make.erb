@@ -1,0 +1,12 @@
+<% if @surveys.any? %>
+  <h1>Existing Surveys</h1>
+  <% @surveys.each do |s| %>
+    <a href = "/survey/<%= s.id %>"><%= s.name %> </a>
+  <% end %>
+<% else %>
+  <p>
+    There are no surveys!
+  </p>
+<% end %>
+
+<h1>Add a Survey</h1>
