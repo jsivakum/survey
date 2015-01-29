@@ -1,0 +1,13 @@
+<%= @survey.name %> <%= @survey.description %>
+<form action="/done_survey/<%= @survey.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <% @survey.questions.each do |q| %>
+    <%= q.query %></br>
+      <% q.responses.each() do |a| %>
+      <input type="checkbox" name="answer_ids[]" value="<%= a.id %>"> <%= a.response %> </br>
+      <% end %>
+  <% end %>
+  <button type="submit">Submit Answers</button>
+
+</form>

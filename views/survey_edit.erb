@@ -10,6 +10,10 @@
     <form action="/update_question/<%= q.id %>" method="post">
       <input type="hidden" name="_method" value="patch">
       <input type="text" name="query"  value= "<%= q.query() %>">
+      <br>
+      <% q.responses.each do |r| %>
+        <%= r.response %><br>
+        <% end %>
       <button type="submit" class="btn btn-success btn-xs">Edit</button>
     </form>
    <form action="/delete_question/<%= q.id %>" method="post">
@@ -26,8 +30,11 @@
 <form  action="/add_question" method="post">
   <input type="hidden" name="survey_id" value="<%= @survey.id %>">
   <input type="text" class="form-control" name="question[]" placeholder="Add a Question">
+  <input type="text" class="form-control" name="answers[]" placeholder="Add Answers seperated by commas">
   <input type="text" class="form-control" name="question[]" placeholder="Add a Question">
+  <input type="text" class="form-control" name="answers[]" placeholder="Add Answers seperated by commas">
   <input type="text" class="form-control" name="question[]" placeholder="Add a Question">
+  <input type="text" class="form-control" name="answers[]" placeholder="Add Answers seperated by commas">
   <button class="btn btn-success" type="submit">Submit</button>
 </form>
 
