@@ -59,7 +59,7 @@ delete '/delete_survey/:id' do
   questions = Question.where({:survey_id => survey.id})
   questions.each() do |q|
     q.destroy()
-    answers = Response.where({:question_id => q.id})
+    answers = q.responses
     answers.each do |a|
       a.destroy()
     end
@@ -78,7 +78,7 @@ end
 delete '/delete_question/:id' do
   question = Question.find(params['id'])
   question.destroy
-  answers = Response.where({:question_id => question.id})
+  answers = question.responses
   answers.each do |a|
     a.destroy()
   end
